@@ -6,6 +6,7 @@ from module.framework_line import FrameworkLine
 from module.hello_world import HelloWorld
 from module.weather import *
 from module.year_progress import YearProgress
+from module.next_festival import NextFestival
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -36,7 +37,9 @@ if __name__ == '__main__':
                Weather(0, 0, logger),
                YearProgress(0, 0, logger),
                FrameworkLine(0, 0, logger),
-               HelloWorld(230, 340, logger)]
+               NextFestival(230, 340, logger),
+               HelloWorld(230, 445, logger),
+               ]
     for module in modules:
         module.update()
         module.draw(screen)
