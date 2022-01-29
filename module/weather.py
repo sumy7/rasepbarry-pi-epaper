@@ -38,15 +38,18 @@ class Weather():
         self.pic = w_bmp
 
     def fetch_weather_data(self):
-        response = requests.get('http://api.jirengu.com/getWeather.php', params={'city': self.city})
-        json_str = response.text.encode(response.encoding).decode(response.apparent_encoding)
-        self.logger.info("[WEATHER]fetch_weather_data -> {}".format(json_str.encode('utf-8')))
-        json_data = json.loads(json_str)
-        if json_data['error'] == 0:
-            data = json_data['results'][0]["weather_data"][0]
-            self.temperature = data['temperature']
-            self.weather = data['weather']
-            self.wind = data['wind']
+        try:
+            response = requests.get('http://api2.jirengu.com/getWeather.php', params={'city': self.city})
+            json_str = response.text.encode(response.encoding).decode(response.apparent_encoding)
+            self.logger.info("[WEATHER]fetch_weather_data -> {}".format(json_str.encode('utf-8')))
+            json_data = json.loads(json_str)
+            if json_data['status'] == 0:
+                data = json_data['result']['now']
+                self.temperature = str(data['temp']) + "℃"
+                self.weather = data['text']
+                self.wind = data['wind_dir'] + " " + data['wind_class']
+        except Exception as e:
+            self.logger.error("[WEATHER]Failed to fetch weather data.", exc_info=True)
 
     def update(self):
         self.fetch_weather_data()
