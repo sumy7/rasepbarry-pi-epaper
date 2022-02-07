@@ -1,6 +1,7 @@
 # coding=utf-8
 import requests
 import json
+import time
 
 from lib.wave_share_43inch_epaper import *
 from utils.string_util import *
@@ -16,7 +17,7 @@ class NextFestival():
 
     def fetch_tts_data(self):
         try:
-            res = requests.get('http://timor.tech/api/holiday/tts')
+            res = requests.get("http://timor.tech/api/holiday/tts?t={}".format(time.strftime("%Y%m%d", time.localtime())))
             self.logger.info("[NEXT_FESTIVAL]fetch_tts_data -> {}".format(res.text))
             data = json.loads(res.text)
             if data['code'] == 0:

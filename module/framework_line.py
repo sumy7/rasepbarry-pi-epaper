@@ -16,4 +16,4 @@ class FrameworkLine():
         screen.line(230, 200, 230, 600)
 
         screen.line(230, 340, 800, 340)
-        screen.line(230, 460, 800, 460)
+        screen.line(230, 490, 800, 490)

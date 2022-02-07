@@ -38,7 +38,7 @@ if __name__ == '__main__':
                YearProgress(0, 0, logger),
                FrameworkLine(0, 0, logger),
                NextFestival(230, 340, logger),
-               HelloWorld(230, 445, logger),
+               HelloWorld(230, 475, logger),
                ]
     for module in modules:
         module.update()
